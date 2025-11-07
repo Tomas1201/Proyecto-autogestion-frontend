@@ -24,9 +24,9 @@ export class MainView {
   ];
   constructor(private router: Router) {} 
 
-  // 3. Método para la navegación
+  
   navegarA(ruta: string) {
-    // El método navigateById utiliza la ruta definida en tu archivo de routes
+    
     this.router.navigate([ruta]);
   }
 }
