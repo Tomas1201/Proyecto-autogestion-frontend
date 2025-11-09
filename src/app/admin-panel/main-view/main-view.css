@@ -47,7 +47,7 @@ section {
 
 
 .menu-card {
-  
+  background-color: bisque;
   width: 100%; 
   max-width: 400px; 
 
@@ -74,12 +74,9 @@ section {
   text-align: center; 
   margin-bottom: 8px;
   font-size: 2rem;
-  cursor:pointer;
+  cursor: default;
   transition: text-shadow 0.4s ease;
-}
-.card-title:hover {
-   
-  text-shadow: 2px 0px 7px rgba(19, 18, 18, 0.925);
+
 }
 
 
