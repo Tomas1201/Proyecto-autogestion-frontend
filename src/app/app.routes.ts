@@ -4,9 +4,10 @@ import { CareerSelfManagement } from './admin-panel/career-self-management/caree
 import { ProfessorSelfManagement } from './admin-panel/professor-self-management/professor-self-management';
 import { StudentSelfManagement } from './admin-panel/student-self-management/student-self-management';
 import { SubjectSelfManagement } from './admin-panel/subject-self-management/subject-self-management';
+import { Login } from './login/login';
+export const routes: Routes = [{path:'', redirectTo:'/login', pathMatch:'full'},
 
-export const routes: Routes = [{path:'', redirectTo:'/MainView', pathMatch:'full'},
-
+{path:'login', component: Login},
 {path:'MainView', component: MainView},
 { path: 'Career', component: CareerSelfManagement},
 { path: 'Professor', component: ProfessorSelfManagement},
