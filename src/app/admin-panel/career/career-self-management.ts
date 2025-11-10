@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AddCareer } from './add-career/add-career';
 
 export interface Career {
   id: number; 
@@ -24,13 +26,16 @@ export interface Career {
     MatButtonModule,     
     MatIconModule,       
     MatFormFieldModule,  
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   templateUrl: './career-self-management.html',
-  styleUrl: './career-self-management.css',
+  styleUrls: ['./career-self-management.css'],
 })
 export class CareerSelfManagement implements OnInit {
+  constructor(private dialog: MatDialog) { }
   
+
   // 1. Datos iniciales como propiedad mutable de la clase
   private careerData: Career[] = [
     {id: 1, name: 'Ing. Sistemas', subjects: 'Ver Materias', description: 'Análisis y desarrollo de software', duration: 5},
@@ -53,10 +58,27 @@ export class CareerSelfManagement implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
   addCareer() {
-    console.log('Abrir formulario para agregar');
-    // Lógica pendiente: Abrir modal o navegar a formulario
+    // Abre el diálogo para agregar una nueva carrera.
+    const dialogRef = this.dialog.open(AddCareer, {
+      minWidth: '300px',
+      maxWidth: '600px',
+      width: '90%'
+    });
+
+    dialogRef.afterClosed().subscribe(nuevaCarrera => {
+      if (nuevaCarrera) {
+        console.log('Carrera recibida:', nuevaCarrera);
+        // Asumimos que nuevaCarrera cumple la interfaz Career. Ajustar si el dialog devuelve distinto shape.
+        // Generar un id simple si no viene
+        if (!('id' in nuevaCarrera) || nuevaCarrera.id == null) {
+          const maxId = this.careerData.length ? Math.max(...this.careerData.map(c => c.id)) : 0;
+          nuevaCarrera.id = maxId + 1;
+        }
+        this.careerData.push(nuevaCarrera as Career);
+        this.dataSource.data = this.careerData;
+      }
+    });
   }
 
   editCareer(career: Career) {
