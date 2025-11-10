@@ -5,8 +5,9 @@ import { ProfessorSelfManagement } from './admin-panel/professor/professor-self-
 import { StudentSelfManagement } from './admin-panel/student/student-self-management';
 import { SubjectSelfManagement } from './admin-panel/subject/subject-self-management';
 import { AddCareer } from './admin-panel/career/add-career/add-career';
+import {Login} from './login/login';
 export const routes: Routes = [{path:'', redirectTo:'/MainView', pathMatch:'full'},
-
+{path:'Login', component: Login},
 {path:'MainView', component: MainView},
 { path: 'Career', component: CareerSelfManagement},
 { path: 'Professor', component: ProfessorSelfManagement},
