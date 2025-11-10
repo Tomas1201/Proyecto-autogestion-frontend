@@ -23,6 +23,24 @@
                 maxlength="500"></textarea>
     </mat-form-field>
 
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Materias Obligatorias</mat-label>
+      
+      <mat-select 
+        multiple 
+        [(ngModel)]="nuevaCarrera.materiasSeleccionadas" 
+        name="materias">
+        
+        @for (materia of materiasDisponibles; track materia.id) {
+          <mat-option [value]="materia.id">
+            {{ materia.nombre }}
+          </mat-option>
+        }
+      </mat-select>
+      
+      <mat-icon matSuffix>list</mat-icon>
+    </mat-form-field>
+
   </form>
 </mat-dialog-content>
 
