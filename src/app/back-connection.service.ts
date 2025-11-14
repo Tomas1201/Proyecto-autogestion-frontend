@@ -58,16 +58,16 @@ export class BackConnection {
 
   //Students
   getStudents(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/students`);
+    return this.http.get(`${this.apiUrl}/student`);
   }
   updateStudents(id:number, data:any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/students/${id}:`,data);
+    return this.http.put(`${this.apiUrl}/student/${id}:`,data);
   } 
   getByIdStudents(id:number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/students/${id}`);
+    return this.http.get(`${this.apiUrl}/student/${id}`);
   }
   createStudent(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/students/`, data);
+    return this.http.post(`${this.apiUrl}/student/`, data);
   }
 }
 

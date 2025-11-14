@@ -13,9 +13,11 @@ import {BackConnection} from '../../back-connection.service';
 export interface Career {
   id: number;
   name: string;
-  subjects: string;
+  //subjects: string;
   description: string;
   duration: number;
+  qualification: string;
+  headOfCareerId: number; // puede ser nulo
 }
 
 @Component({
@@ -32,7 +34,7 @@ export interface Career {
   templateUrl: './career.html',
   styleUrls: ['./career.css'],
 })
-export class CareerSelfManagement implements OnInit {
+export class Career implements OnInit {
   constructor(private dialog: MatDialog, private backConnection: BackConnection) {}
 
   private careerData: Career[] = [];

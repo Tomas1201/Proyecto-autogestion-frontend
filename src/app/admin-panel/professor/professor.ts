@@ -16,6 +16,12 @@ export interface Professor {
   name: string;
   lastName: string;
   career: string;
+  Dni: string;
+  File: string;
+  titulo_academico: string;
+  Email: string;
+  Phone: string;
+  disponibilidad_horaria: string;
   status: string;
 }
 
@@ -35,7 +41,7 @@ export interface Professor {
   templateUrl: './professor.html',
   styleUrls: ['./professor.css'],
 })
-export class ProfessorSelfManagement implements OnInit {
+export class Professor implements OnInit {
   private professorData: Professor[] = [];
 
   displayedColumns: string[] = ['name', 'lastName', 'career', 'status', 'actions'];

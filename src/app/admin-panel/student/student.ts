@@ -14,6 +14,9 @@ export interface Student {
   id: number;
   name: string;
   lastName: string;
+  email: string;
+  file: string;
+  dni: string;
   career: string;
   status: string;
 }

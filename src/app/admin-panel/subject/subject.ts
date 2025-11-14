@@ -16,7 +16,9 @@ export interface Subject {
   id: number;
   name: string;
   code: string;
-  classes: string;
+  hours: number; //nulo
+  horarioid: number; //nulo
+  classroom: string; //nulo
 }
 
 @Component({
@@ -35,7 +37,7 @@ export interface Subject {
   templateUrl: './subject.html',
   styleUrls: ['./subject.css'],
 })
-export class SubjectSelfManagement implements OnInit {
+export class Subject implements OnInit {
   private subjectData: Subject[] = [
     
   ];
@@ -89,8 +91,8 @@ export class SubjectSelfManagement implements OnInit {
         const newSubject: Subject = {
           id: newId,
           name: result.name,
-          code: result.code,
-          classes: result.classes,
+          code: result.code
+        
         };
         this.subjectData.push(newSubject);
         this.dataSource.data = [...this.subjectData];
