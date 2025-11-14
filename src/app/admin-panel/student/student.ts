@@ -32,7 +32,7 @@ export interface Student {
     MatInputModule,
     CommonModule,
     MatDialogModule,
-    AddStudent,
+    
   ],
   templateUrl: './student.html',
   styleUrl: './student.css',
@@ -84,9 +84,11 @@ export class Student {
    
   
     dialogRef.afterClosed().subscribe((newStudent) => {
+      console.log('El diálogo se cerró. Datos recibidos:', newStudent);
+      newStudent.file= this.studentData.length + 1;
       if (newStudent) {
         
-        // LLAMADA AL SERVICIO CON EL MÉTODO POST (createCareer)
+        
         this.backConnection.createStudent(newStudent).subscribe({
           next: (response) => {
             console.log('Carrera creada exitosamente. Respuesta:', response);
@@ -94,7 +96,7 @@ export class Student {
           },
           error: (err) => {
             console.error('Error al crear carrera mediante POST:', err);
-            // Manejo de errores (ej: si el nombre ya existe, etc.)
+        
           }
         });
       }

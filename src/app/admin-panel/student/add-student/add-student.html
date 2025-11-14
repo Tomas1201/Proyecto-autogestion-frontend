@@ -5,7 +5,7 @@
     
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Nombre del alumno</mat-label>
-      <input matInput [(ngModel)]="newStudent.Name" name="nombre" required>
+      <input matInput [(ngModel)]="newStudent.name" name="name" required>
       <mat-icon matSuffix>school</mat-icon>
     </mat-form-field>
 
@@ -15,33 +15,28 @@
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email del alumno</mat-label>
+      <input matInput  [(ngModel)]="newStudent.email" name="email" required>
+      
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>DNI del alumno</mat-label>
+      <input matInput  [(ngModel)]="newStudent.dni" name="dni" required>
+      
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Carrera inscripto</mat-label>
       <input matInput  [(ngModel)]="newStudent.carrera" name="carrera" required>
       
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Materias inscripto</mat-label>
-      
-      <mat-select 
-        multiple 
-        [(ngModel)]="newStudent.state" 
-        name="materias">
-        
-        @for (student of studentsDisponibles; track student.id) {
-          <mat-option [value]="student.id">
-            {{ student.nombre }}
-          </mat-option>
-        }
-      </mat-select>
-      
-      <mat-icon matSuffix>list</mat-icon>
-    </mat-form-field>
+
 
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancelar()">Cancelar</button>
-  <button mat-raised-button color="primary" [disabled]="!newStudent.Name || !newStudent.lastName" (click)="onGuardar()">Guardar</button>
+  <button mat-raised-button color="primary" [disabled]="!newStudent.name || !newStudent.lastName" (click)="onGuardar()">Guardar</button>
 </mat-dialog-actions>
