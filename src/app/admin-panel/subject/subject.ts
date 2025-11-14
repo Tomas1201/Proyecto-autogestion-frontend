@@ -37,7 +37,7 @@ export interface Subject {
   templateUrl: './subject.html',
   styleUrls: ['./subject.css'],
 })
-export class Subject implements OnInit {
+export class SubjectComponent implements OnInit {
   private subjectData: Subject[] = [
     
   ];
@@ -64,7 +64,7 @@ export class Subject implements OnInit {
          console.log('Datos de estudiantes cargados desde el backend.');
        },
        error: (err) => {
-         console.error('Error al cargar de estudentes desde el backend:', err);
+         console.error('Error al cargar de estudiantes desde el backend:', err);
          
        }
      });}
@@ -91,8 +91,10 @@ export class Subject implements OnInit {
         const newSubject: Subject = {
           id: newId,
           name: result.name,
-          code: result.code
-        
+          code: result.code,
+          hours: 0,
+          horarioid: 0,
+          classroom: '',
         };
         this.subjectData.push(newSubject);
         this.dataSource.data = [...this.subjectData];
