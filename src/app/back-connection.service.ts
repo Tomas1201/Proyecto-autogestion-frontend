@@ -43,7 +43,7 @@ export class BackConnection {
 
   //Professor
   getProfessor(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/professor`);
+    return this.http.get(`${this.apiUrl}/professor/`);
   }
   updateProfessor(id:number, data:any): Observable<any> {
     return this.http.put(`${this.apiUrl}/professor/${id}:`,data);

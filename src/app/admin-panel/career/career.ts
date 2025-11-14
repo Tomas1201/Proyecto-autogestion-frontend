@@ -88,17 +88,18 @@ export class Career implements OnInit {
  
 
   dialogRef.afterClosed().subscribe((newCareer) => {
+    console.log('Diálogo cerrado. Datos recibidos:', newCareer);
     if (newCareer) {
       console.log('Nueva carrera recibida del diálogo:', newCareer);
-      // LLAMADA AL SERVICIO CON EL MÉTODO POST (createCareer)
+      
       this.backConnection.createCareer(newCareer).subscribe({
         next: (response) => {
           console.log('Carrera creada exitosamente. Respuesta:', response);
-          this.loadCareers(); // Recargar la tabla para mostrar el nuevo registro del backend
+          this.loadCareers(); 
         },
         error: (err) => {
           console.error('Error al crear carrera mediante POST:', err);
-          // Manejo de errores (ej: si el nombre ya existe, etc.)
+          
         }
       });
     }
@@ -117,20 +118,20 @@ export class Career implements OnInit {
 
   dialogRef.afterClosed().subscribe((updatedCareer) => {
     if (updatedCareer) {
-      // 1. LLAMADA AL SERVICIO: Usamos el ID y los datos actualizados
+      
       this.backConnection.updateCareer(updatedCareer.id, updatedCareer).subscribe({
         next: (response) => {
           console.log(`Carrera ID ${updatedCareer.id} actualizada con éxito:`, response);
-          // 2. Recargar los datos de la tabla para reflejar el cambio del backend
+      
           this.loadCareers(); 
         },
         error: (err) => {
           console.error('Error al actualizar carrera (PUT):', err);
-          // Opcional: Mostrar mensaje de error al usuario
+      
         }
       });
       
-      // La lógica local de actualización (findIndex, this.careerData[idx] = ...) se ELIMINA
+      
     }
   });
 }
