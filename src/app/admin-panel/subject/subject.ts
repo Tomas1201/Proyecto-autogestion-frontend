@@ -64,7 +64,7 @@ export class Subject implements OnInit {
          console.log('Datos de estudiantes cargados desde el backend.');
        },
        error: (err) => {
-         console.error('Error al cargar de estudentes desde el backend:', err);
+         console.error('Error al cargar de estudiantes desde el backend:', err);
          
        }
      });}
