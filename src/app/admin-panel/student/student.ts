@@ -19,7 +19,7 @@ export interface Student {
 }
 
 @Component({
-  selector: 'app-career-self-management',
+  selector: 'app-student',
   imports: [
     MatTableModule,
     MatSortModule,
@@ -34,7 +34,7 @@ export interface Student {
   templateUrl: './student.html',
   styleUrl: './student.css',
 })
-export class StudentSelfManagement {
+export class Student {
   constructor(private dialog: MatDialog, private backConnection: BackConnection) {}
 
   private studentData: Student[] = [];
@@ -71,7 +71,7 @@ export class StudentSelfManagement {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  addCareer() {
+  addStudent() {
       const dialogRef = this.dialog.open(AddStudent, {
         minWidth: '300px',
         maxWidth: '600px',
@@ -82,7 +82,7 @@ export class StudentSelfManagement {
   
     dialogRef.afterClosed().subscribe((newStudent) => {
       if (newStudent) {
-        console.log('Nueva carrera recibida del diálogo:', newStudent);
+        
         // LLAMADA AL SERVICIO CON EL MÉTODO POST (createCareer)
         this.backConnection.createStudent(newStudent).subscribe({
           next: (response) => {
