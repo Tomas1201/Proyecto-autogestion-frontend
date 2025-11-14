@@ -17,7 +17,6 @@ export class EditStudent {
 
 
   student = {
-    id:'',
     name: '',
     lastName: '',
     email: '',
