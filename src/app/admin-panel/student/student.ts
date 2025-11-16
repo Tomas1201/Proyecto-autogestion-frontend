@@ -140,6 +140,9 @@ public displayedColumns: string[] = this.columns.map(c => c.def).concat(['action
   
   
     dialogRef.afterClosed().subscribe((updateStudent) => {
+      const careerArray: string[] = [];
+      careerArray.push(updateStudent.career);
+      updateStudent.career = careerArray;
       console.log('Diálogo cerrado. Datos recibidos:', updateStudent);
 
       if (updateStudent) {

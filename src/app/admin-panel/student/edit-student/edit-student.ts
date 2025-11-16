@@ -21,8 +21,8 @@ export class EditStudent {
     lastName: '',
     email: '',
     dni: 1,
-    career: '',
-    state: [] as string[]
+    career: [] as string[],
+    status: ''
   };
 
   constructor(
