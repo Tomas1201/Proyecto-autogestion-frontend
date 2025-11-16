@@ -21,6 +21,14 @@ export interface Student {
   career: string;
   status: string;
 }
+interface StudentColumn {
+  def: string;      // El nombre de la columna (matColumnDef)
+  header: string;   // El texto del encabezado
+  cellKey: string;  // La clave del objeto 'element' a mostrar (ej: 'name', 'lastName')
+  sortable: boolean; // Indica si la columna es ordenable
+}
+
+// Array que reemplazará las múltiples <ng-container>
 
 @Component({
   selector: 'app-student',
@@ -42,7 +50,20 @@ export class Student {
   constructor(private dialog: MatDialog, private backConnection: BackConnection) {}
 
   private studentData: Student[] = [];
-  displayedColumns: string[] = ['name', 'lastName', 'email', 'file', 'dni','career', 'status', 'actions'];
+  public columns: StudentColumn[] = [
+  { def: 'name', header: 'Nombre', cellKey: 'name', sortable: true },
+  { def: 'lastName', header: 'Apellido', cellKey: 'lastName', sortable: true },
+  { def: 'email', header: 'Email', cellKey: 'email', sortable: true },
+  { def: 'file', header: 'Legajo', cellKey: 'file', sortable: true },
+  { def: 'dni', header: 'DNI', cellKey: 'dni', sortable: true },
+  { def: 'career', header: 'Carrera', cellKey: 'career', sortable: true },
+  { def: 'status', header: 'Estado', cellKey: 'status', sortable: true },
+  // Las 'actions' las dejaremos aparte ya que no usan una 'cellKey' simple
+];
+
+// Asegúrate de que tu 'displayedColumns' incluya los 'def' de la lista, más 'actions'
+public displayedColumns: string[] = this.columns.map(c => c.def).concat(['actions']);
+  //displayedColumns: string[] = ['name', 'lastName', 'email', 'file', 'dni','career', 'status', 'actions'];
 
   dataSource = new MatTableDataSource(this.studentData);
 
@@ -56,7 +77,7 @@ export class Student {
     loadStudents() {
     this.backConnection.getStudents().subscribe({
       next: (data: Student[]) => {
-        console.log('Datos de carreras recibidos:', data);
+        console.log('Datos de estudiantes recibidos:', data);
         this.studentData = data; 
         this.dataSource.data = this.studentData; 
         if (this.sort) { 
@@ -87,6 +108,9 @@ export class Student {
     dialogRef.afterClosed().subscribe((newStudent) => {
       
       newStudent.file = Number(newStudent.file) + 1 ;
+      const careerArray: string[] = [];
+      careerArray.push(newStudent.career);
+      newStudent.career = careerArray;
       console.log('El diálogo se cerró. Datos recibidos:', newStudent);
       if (newStudent) {
         
