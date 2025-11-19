@@ -16,16 +16,16 @@ export interface Subject {
   id: number;
   name: string;
   code: string;
-  hours: number; //nulo
-  horarioid: number; //nulo
-  classroom: string; //nulo
+  hours: number; 
+  horarioid: number; 
+  classroom: string; 
 }
 
 interface SubjectColumn {
-  def: string;      // El nombre de la columna (matColumnDef)
-  header: string;   // El texto del encabezado
-  cellKey: string;  // La clave del objeto 'element' a mostrar (ej: 'name', 'lastName')
-  sortable: boolean; // Indica si la columna es ordenable
+  def: string;      
+  header: string;   
+  cellKey: string;  
+  sortable: boolean; 
 }
 @Component({
   selector: 'app-subject-self-management',
@@ -89,7 +89,7 @@ public displayedColumns: string[] = this.columns.map(c => c.def).concat(['action
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // Abre el modal para agregar materia
+
   addSubject() {
     const dialogRef = this.dialog.open(AddSubjectComponent, {
       width: '420px',
